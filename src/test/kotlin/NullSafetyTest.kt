@@ -1,3 +1,4 @@
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 
@@ -9,10 +10,12 @@ class NullSafetyTest : ShouldSpec({
     should("Get String Length WIth Null Value") {
         val value1 = null
         val value2 = "a valid string"
-        println(getLength(value1))
-        getLength(value1) shouldBe null
-        println(getLength(value2))
-        getLength(value2) shouldBe 14
+        val result1 = getLength(value1)
+        val result2 = getLength(value2)
+        println("First result: $result1")
+        result1 shouldBe null
+        println("Second Result: $result2")
+        result2 shouldBe 14
     }
 
     /**
@@ -23,24 +26,88 @@ class NullSafetyTest : ShouldSpec({
         company.getEmployName() shouldBe "Sergiu"
         company.getEmployAge() shouldBe null
     }
+
+    /**
+     * Create a function that return string length or 0 if value null
+     */
+    should("Get length or 0") {
+        val value1 = null
+        val value2 = "Not null"
+        val result1 = getLengthOrZero(value1)
+        val result2 = getLengthOrZero(value2)
+        println("First result: $result1")
+        result1 shouldBe 0
+        println("Second Result: $result2")
+        result2 shouldBe 8
+    }
+
+    /**
+     * Create a function that return string length or throw an exception if value null
+     */
+    should("Get length or exception") {
+        val value1 = null
+        val value2 = "Not null"
+        val result2 = getLengthOrException(value2)
+        shouldThrow<NullPointerException> {
+            getLengthOrException(value1)
+        }
+        println("Second Result: $result2")
+        result2 shouldBe 8
+    }
+
+    /**
+     * Create a function that return safe cast to Employ
+     */
+    should("Get Employ with safeCast") {
+        val value1 = Employ()
+        val value2 = Employ2()
+        val value3 = null
+        val result1 = safeCastToEmploy(value1)
+        val result2 = safeCastToEmploy(value2)
+        val result3 = safeCastToEmploy(value3)
+        println("First result: $result1")
+        result1 shouldBe Employ()
+        println("Second Result: $result2")
+        result2 shouldBe null
+        println("Second Result: $result3")
+        result2 shouldBe null
+    }
+
+    /**
+     * Create a function that return list of Int without null values
+     */
+    should("Get List with no nulls") {
+        val value = listOf(1, 2, null, 4, null)
+        val result = removeNull(value)
+        println("Result: $result")
+        result shouldBe listOf(1, 2, 4)
+    }
 })
 
 fun getLength(value: String?): Int? = value?.length
+fun getLengthOrZero(value: String?): Int = value?.length ?: 0
 
+fun getLengthOrException(value: String?): Int = value!!.length
+
+fun safeCastToEmploy(value: Any?): Employ? = value as? Employ
+
+fun removeNull(value: List<Int?>): List<Int> = value.filterNotNull()
+
+data class Employ2(val name: String = "Sergiu", var age: String = "12")
 data class Employ(val name: String = "Sergiu", var age: Int? = null)
-data class Endava(val employ: Employ?)
-data class Company(val company: Endava) {
+data class Endava(val employ: Employ)
+data class Company(val company: Endava?) {
 
     fun getEmployName(): String? {
         val company = Company(Endava(Employ()))
-        val name = company.company.employ?.name
+        val name = company.company?.employ?.name
         println("Employ name is $name")
         return name
     }
 
     fun getEmployAge(): Int? {
         val company = Company(Endava(Employ()))
-        val age = company.company.employ?.age
+        val age = company.company?.employ?.age
         println("Employ age is $age")
         return age
     }
