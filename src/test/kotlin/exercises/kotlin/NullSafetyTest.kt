@@ -1,3 +1,5 @@
+package exercises.kotlin
+
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
@@ -7,7 +9,7 @@ class NullSafetyTest : ShouldSpec({
     /**
      * Create an inline function that will return either string length or null
      */
-    should("Get String Length WIth Null Value") {
+    should("Get String Length With Null Value") {
         val value1 = null
         val value2 = "a valid string"
         val result1 = getLength(value1)

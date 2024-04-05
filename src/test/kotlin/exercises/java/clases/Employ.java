@@ -1,4 +1,4 @@
-package java.clases;
+package exercises.java.clases;
 
 public class Employ {
     String name;
