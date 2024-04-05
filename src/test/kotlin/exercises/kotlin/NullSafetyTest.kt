@@ -86,14 +86,14 @@ class NullSafetyTest : ShouldSpec({
     }
 })
 
-fun getLength(value: String?): Int? = value?.length
-fun getLengthOrZero(value: String?): Int = value?.length ?: 0
+fun getLength(value: String?): Int? = TODO()
+fun getLengthOrZero(value: String?): Int = TODO()
 
-fun getLengthOrException(value: String?): Int = value!!.length
+fun getLengthOrException(value: String?): Int = TODO()
 
-fun safeCastToEmploy(value: Any?): Employ? = value as? Employ
+fun safeCastToEmploy(value: Any?): Employ? = TODO()
 
-fun removeNull(value: List<Int?>): List<Int> = value.filterNotNull()
+fun removeNull(value: List<Int?>): List<Int> = TODO()
 
 data class Employ2(val name: String = "Sergiu", var age: String = "12")
 data class Employ(val name: String = "Sergiu", var age: Int? = null)
@@ -101,16 +101,10 @@ data class Endava(val employ: Employ)
 data class Company(val company: Endava?) {
 
     fun getEmployName(): String? {
-        val company = Company(Endava(Employ()))
-        val name = company.company?.employ?.name
-        println("Employ name is $name")
-        return name
+        TODO()
     }
 
     fun getEmployAge(): Int? {
-        val company = Company(Endava(Employ()))
-        val age = company.company?.employ?.age
-        println("Employ age is $age")
-        return age
+        TODO()
     }
 }

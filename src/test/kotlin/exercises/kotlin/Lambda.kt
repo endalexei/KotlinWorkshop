@@ -5,25 +5,25 @@ import io.kotest.matchers.shouldBe
 
 class Lambda : ShouldSpec({
 
-    val sum = { x: Int, y: Int -> x + y }
+    val sum = Unit
 
-    val increase = fun Int.(number: Int): Int { return this + number }
+    val increase = Unit
 
     /**
      * This exercise requires to create a sum lambda expression
      */
-    should("Sum 2 numbers using lambda variables") {
-        val result = sum(4, 5) shouldBe 9
-        println(result)
-    }
+//    should("Sum 2 numbers using lambda variables") {
+//        val result = sum(4, 5) shouldBe 9
+//        println(result)
+//    }
 
     /**
      * This exercise requires to create a val with function literals with receiver
      */
-    should("Increase number with 6") {
-        val result = 5.increase(6) shouldBe 11
-        println(result)
-    }
+//    should("Increase number with 6") {
+//        val result = 5.increase(6) shouldBe 11
+//        println(result)
+//    }
 
     /**
      * This test requires to use Passing trailing lambdas
@@ -58,13 +58,10 @@ class Lambda : ShouldSpec({
 
 })
 
-fun sumListElements(list: List<Int>): Int = list.fold(0) { acc, i -> acc + i }
+fun sumListElements(list: List<Int>): Int = TODO()
 
-fun filterPositiveNumbers(list: List<Int>): List<Int> = list.filter { it > 0 }
+fun filterPositiveNumbers(list: List<Int>): List<Int> = TODO()
 
 fun getValueFromMap(map: Map<Int, String>): String {
-    var string = ""
-    map.forEach { (_, value) -> string += value }
-    println(string)
-    return string
+    TODO()
 }
