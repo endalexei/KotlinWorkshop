@@ -24,7 +24,7 @@ class NullSafetyTest : ShouldSpec({
      * Create functions in class to for validation to pass
      */
     should("Get Employ name and age") {
-        val company = Company(Endava(Employ()))
+        val company = Company(Endava(Employee()))
         company.getEmployName() shouldBe "Sergiu"
         company.getEmployAge() shouldBe null
     }
@@ -61,18 +61,18 @@ class NullSafetyTest : ShouldSpec({
      * Create a function that return safe cast to Employ
      */
     should("Get Employ with safeCast") {
-        val value1 = Employ()
+        val value1 = Employee()
         val value2 = Employ2()
         val value3 = null
         val result1 = safeCastToEmploy(value1)
         val result2 = safeCastToEmploy(value2)
         val result3 = safeCastToEmploy(value3)
         println("First result: $result1")
-        result1 shouldBe Employ()
+        result1 shouldBe Employee()
         println("Second Result: $result2")
         result2 shouldBe null
-        println("Second Result: $result3")
-        result2 shouldBe null
+        println("And Result: $result3")
+        result3 shouldBe null
     }
 
     /**
@@ -86,25 +86,24 @@ class NullSafetyTest : ShouldSpec({
     }
 })
 
-fun getLength(value: String?): Int? = TODO()
-fun getLengthOrZero(value: String?): Int = TODO()
+fun getLength(value: String?): Int? = value?.length
+fun getLengthOrZero(value: String?): Int = value?.length ?: 0
 
-fun getLengthOrException(value: String?): Int = TODO()
+fun getLengthOrException(value: String?): Int = value!!.length
 
-fun safeCastToEmploy(value: Any?): Employ? = TODO()
+fun safeCastToEmploy(value: Any?): Employee? = value as? Employee
 
-fun removeNull(value: List<Int?>): List<Int> = TODO()
+fun removeNull(value: List<Int?>): List<Int> = value.filterNotNull()
 
 data class Employ2(val name: String = "Sergiu", var age: String = "12")
-data class Employ(val name: String = "Sergiu", var age: Int? = null)
-data class Endava(val employ: Employ)
+data class Employee(val name: String = "Sergiu", var age: Int? = null)
+data class Endava(val employee: Employee)
 data class Company(val company: Endava?) {
 
-    fun getEmployName(): String? {
-        TODO()
-    }
+    fun getEmployName(): String? = company?.employee?.name
+
 
     fun getEmployAge(): Int? {
-        TODO()
+        return  company?.employee?.age
     }
 }

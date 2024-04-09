@@ -1,13 +1,13 @@
 package exercises.java.clases;
 
 public class Endava {
-    Employ employ;
+    Employee employee;
 
-    public Employ getEmploy() {
-        return employ;
+    public Employee getEmploy() {
+        return employee;
     }
 
-    public void setEmploy(Employ employ) {
-        this.employ = employ;
+    public void setEmploy(Employee employee) {
+        this.employee = employee;
     }
 }

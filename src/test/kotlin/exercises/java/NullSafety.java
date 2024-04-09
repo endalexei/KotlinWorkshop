@@ -1,7 +1,7 @@
 package exercises.java;
 
 import exercises.java.clases.Company;
-import exercises.java.clases.Employ;
+import exercises.java.clases.Employee;
 import exercises.java.clases.Endava;
 
 import java.util.ArrayList;
@@ -20,9 +20,9 @@ public class NullSafety {
     }
 
     public String getEmployName() {
-        Employ employ = company.getEndava().getEmploy();
-        if (employ != null) {
-            return employ.getName();
+        Employee employee = company.getEndava().getEmploy();
+        if (employee != null) {
+            return employee.getName();
         }
         return "null";
     }
@@ -50,9 +50,9 @@ public class NullSafety {
         }
     }
 
-    public Employ safeCastToEmploy(Object value) {
-        if (value instanceof Employ) {
-            return (Employ) value;
+    public Employee safeCastToEmploy(Object value) {
+        if (value instanceof Employee) {
+            return (Employee) value;
         }
         return null;
     }

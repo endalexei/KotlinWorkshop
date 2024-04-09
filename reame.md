@@ -1,5 +1,5 @@
-# **Befor you run** 
-Instal Kotest plugin:
+# **Before you run** 
+Install Kotest plugin:
 
 1. Go to Setings > Plugins
 2. Search for Kotest

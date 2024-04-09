@@ -5,25 +5,28 @@ import io.kotest.matchers.shouldBe
 
 class Lambda : ShouldSpec({
 
-    val sum = Unit
+    val sum = { a: Int, b: Int -> a + b }
 
-    val increase = Unit
+    val increase = fun Int.(number: Int): Int { return this + number }
+    val increase2 :Int.(Int)-> Int = Int::plus
+    val increase3 :Int.(Int)-> Int = {x: Int -> x+this}
+    val increase4 :Int.(Int)-> Int = {it+this}
 
     /**
      * This exercise requires to create a sum lambda expression
      */
-//    should("Sum 2 numbers using lambda variables") {
-//        val result = sum(4, 5) shouldBe 9
-//        println(result)
-//    }
+    should("Sum 2 numbers using lambda variables") {
+        val result = sum(4, 5) shouldBe 9
+        println(result)
+    }
 
     /**
      * This exercise requires to create a val with function literals with receiver
      */
-//    should("Increase number with 6") {
-//        val result = 5.increase(6) shouldBe 11
-//        println(result)
-//    }
+    should("Increase number with 6") {
+        val result = 5.increase3(6) shouldBe 11
+        println(result)
+    }
 
     /**
      * This test requires to use Passing trailing lambdas
@@ -58,10 +61,22 @@ class Lambda : ShouldSpec({
 
 })
 
-fun sumListElements(list: List<Int>): Int = TODO()
+fun sumListElements(list: List<Int>): Int =  list.fold(0) { acc, i -> acc + i }
+fun sumListElements2(list: List<Int>): Int =  list.fold(0, { acc, i -> acc + i })
+fun sumListElements3(list: List<Int>): (List<Int>) -> Int =  List<Int>::sum
 
-fun filterPositiveNumbers(list: List<Int>): List<Int> = TODO()
+fun filterPositiveNumbers(list: List<Int>): List<Int> = list.filter { it>0 }
 
 fun getValueFromMap(map: Map<Int, String>): String {
-    TODO()
+    var string = ""
+    map.forEach { (_, value) -> string += value }
+    println(string)
+    return string
 }
+
+fun getValueFromMap2(map: Map<Int, String>): String {
+    return map.entries.fold("") { key, (_, value) -> key + value }
+}
+
+fun getValueFromMap3(map: Map<Int, String>): String = map.map { it.value }.joinToString { "" }
+fun getValueFromMap4(map: Map<Int, String>): String = map.values.joinToString ( "" )

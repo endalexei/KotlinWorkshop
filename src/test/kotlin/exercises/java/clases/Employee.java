@@ -1,6 +1,6 @@
 package exercises.java.clases;
 
-public class Employ {
+public class Employee {
     String name;
     int age;
 
