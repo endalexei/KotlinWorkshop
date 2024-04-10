@@ -63,7 +63,7 @@ class Collections : ShouldSpec({
         println(response)
     }
 
-    fun List<Int>.combineWith(list: List<Int>): Set<Int>{
+    infix fun List<Int>.combineWith(list: List<Int>): Set<Int>{
         TODO()
     }
     fun List<Int>.uniteWith(list: List<Int>): Set<Int> {
@@ -77,7 +77,7 @@ class Collections : ShouldSpec({
         val list1 = listOf(1, 1, 2, 3, 5, 8, -1)
         val list2 = listOf(1, 1, 2, 2, 3, 5)
 
-        val result1 = list1.combineWith(list2) shouldBe setOf(1, 2, 3, 5)
+        val result1 = list1 combineWith list2  shouldBe setOf(1, 2, 3, 5)
         println(result1)
         val result2 = list1.uniteWith(list2) shouldBe setOf(1, 2, 3, 5, 8, -1)
         println(result2)
