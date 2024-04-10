@@ -1,4 +1,4 @@
-package exercises.kotlin
+package exercises.day1.kotlin
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec

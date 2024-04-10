@@ -1,4 +1,4 @@
-package exercises.kotlin
+package exercises.day1.kotlin
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe

@@ -1,4 +1,4 @@
-package exercises.java.clases;
+package exercises.day1.java.clases;
 
 public class Company {
     Endava endava;

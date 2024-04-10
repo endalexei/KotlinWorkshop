@@ -1,4 +1,4 @@
-package exercises.java;
+package exercises.day1.java;
 
 import java.util.List;
 import java.util.Map;

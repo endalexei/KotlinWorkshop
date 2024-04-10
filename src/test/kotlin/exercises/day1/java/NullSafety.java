@@ -1,8 +1,8 @@
-package exercises.java;
+package exercises.day1.java;
 
-import exercises.java.clases.Company;
-import exercises.java.clases.Employee;
-import exercises.java.clases.Endava;
+import exercises.day1.java.clases.Company;
+import exercises.day1.java.clases.Employee;
+import exercises.day1.java.clases.Endava;
 
 import java.util.ArrayList;
 import java.util.List;
