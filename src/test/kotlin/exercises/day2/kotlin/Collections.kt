@@ -6,16 +6,17 @@ import io.kotest.matchers.shouldBe
 class Collections : ShouldSpec({
 
     fun List<String>.printByList() {
-        println("Number of elements: ${this.size}")
-        println("Third element: ${this[2]}")
-        println("Fourth element: ${this[3]}")
-        println("Index of element \"two\" ${this.indexOf("two")}")
+        TODO()
     }
 
     /**
      * This exercise wants you to create a collection and call the function
      * don't forget to asser the result, this is a test after all
-     * list to create with value "one", "two", "three", "four"
+     * Things to print :
+     * Number of elements:
+     * Third element:
+     * Fourth element:
+     * Index of element "two"
      */
     should("Use a collection to print text") {
         val numbers = listOf("one", "two", "three", "four")
