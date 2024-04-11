@@ -21,12 +21,14 @@ class Overriding : ShouldSpec({
 
 open class ListOfString(private val list: List<String>) {
     override fun toString(): String {
-        TODO()
+        var listAsString = ""
+        for (element in list) listAsString += "$element "
+        return listAsString.trim()
     }
 }
 
 class ListOfDifferentString(private val list: List<String>) : ListOfString(list) {
     override fun toString(): String {
-        TODO()
+        return super.toString().replace("to", "tow").replace("sree", "three")
     }
 }

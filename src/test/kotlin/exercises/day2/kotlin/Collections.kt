@@ -6,7 +6,10 @@ import io.kotest.matchers.shouldBe
 class Collections : ShouldSpec({
 
     fun List<String>.printByList() {
-        TODO()
+        println("Number of elements: ${this.size}")
+        println("Third element: ${this[2]}")
+        println("Fourth element: ${this.get(3)}")
+        println("Index of element \"two\" ${this.indexOf("two")}")
     }
 
     /**
@@ -24,7 +27,9 @@ class Collections : ShouldSpec({
     }
 
     fun List<String>.getShortWordsTo(shortWords: MutableList<String>, maxLength: Int) {
-        TODO()
+        filterTo(shortWords) { it.length <= maxLength }
+        val articles = setOf("a", "A", "an", "An", "the", "The")
+        shortWords -= articles
     }
 
     /**
@@ -40,7 +45,15 @@ class Collections : ShouldSpec({
     }
 
     fun increaseList(list: List<Int>): MutableList<Int> {
-        TODO()
+        val mlist = list.toMutableList()
+        val listIterator = mlist.listIterator()
+        listIterator.next()
+        listIterator.next()
+        listIterator.set(3)
+        listIterator.add(4)
+        mlist.add(6)
+        mlist.addFirst(1)
+        return mlist
     }
 
     /**
@@ -53,23 +66,26 @@ class Collections : ShouldSpec({
     }
 
     fun makeIntList(number: Int): List<Int> {
-        TODO()
+        val list = mutableListOf<Int>()
+        for (i in 0..number step 3) list.add(i)
+        return list
+    }
+
+    fun makeIntList2(number: Int): List<Int> {
+        return (0..number step 3).toList()
     }
 
     /**
-     * This exercise want's you to create a list of Int
+     * This exercise wants you to create a list of Int
      */
     should("Return a list") {
         val response = makeIntList(10) shouldBe listOf(0, 3, 6, 9)
         println(response)
     }
 
-    infix fun List<Int>.combineWith(list: List<Int>): Set<Int>{
-        TODO()
-    }
-    fun List<Int>.uniteWith(list: List<Int>): Set<Int> {
-        TODO()
-    }
+    infix fun List<Int>.combineWith(list: List<Int>): Set<Int>  = this intersect list
+
+    fun List<Int>.uniteWith(list: List<Int>): Set<Int> = this union list
 
     /**
      * This Test wants you to return commune and all elements of 2 lists with unique values
@@ -78,7 +94,7 @@ class Collections : ShouldSpec({
         val list1 = listOf(1, 1, 2, 3, 5, 8, -1)
         val list2 = listOf(1, 1, 2, 2, 3, 5)
 
-        val result1 = list1 combineWith list2  shouldBe setOf(1, 2, 3, 5)
+        val result1 = list1 combineWith list2 shouldBe setOf(1, 2, 3, 5)
         println(result1)
         val result2 = list1.uniteWith(list2) shouldBe setOf(1, 2, 3, 5, 8, -1)
         println(result2)

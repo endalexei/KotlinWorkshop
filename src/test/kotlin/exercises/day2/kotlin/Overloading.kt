@@ -8,33 +8,21 @@ class Overloading : ShouldSpec({
     should("a list") {
         val point = Point(6, 8)
         val point2 = Point(3, 4)
-        point.plus(point2) shouldBe Point(9, 12)
-        point.minus(point2) shouldBe Point(3, 4)
-        point.times(point2) shouldBe Point(18, 32)
-        point.div(point2) shouldBe Point(2, 2)
-//        point.inc() shouldBe Point(7, 9)
-//        point.dec() shouldBe Point(5, 7)
+        point + point2 shouldBe Point(9, 12)
+        point - point2 shouldBe Point(3, 4)
+        point * point2 shouldBe Point(18, 32)
+        point / point2 shouldBe Point(2, 2)
+        point.inc() shouldBe Point(7, 9)
+        point.dec() shouldBe Point(5, 7)
     }
 
 })
 
-class Point(val x: Int, val y: Int)  {
-    operator fun plus(p: Point){
-        TODO()
-    }
-    operator fun minus(p: Point) {
-        TODO()
-    }
-    operator fun times(p: Point) {
-        TODO()
-    }
-    operator fun div(p: Point) {
-        TODO()
-    }
-//    operator fun inc(){
-//        TODO()
-//    }
-//    operator fun dec(){
-//        TODO()
-//    }
+data class Point(val x: Int, val y: Int) {
+    operator fun plus(p: Point) = Point(x + p.x, y + p.y)
+    operator fun minus(p: Point) = Point(x - p.x, y - p.y)
+    operator fun times(p: Point) = Point(x * p.x, y * p.y)
+    operator fun div(p: Point) = Point(x / p.x, y / p.y)
+    operator fun inc() = Point(x + 1, y + 1)
+    operator fun dec() = Point(x - 1, y - 1)
 }

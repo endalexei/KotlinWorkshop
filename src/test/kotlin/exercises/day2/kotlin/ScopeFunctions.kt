@@ -8,7 +8,7 @@ import kotlin.random.Random
 class ScopeFunctions : ShouldSpec({
 
     fun getNameAndAGeAsString(peron: Person): String {
-        TODO()
+        peron.let { return "${it.Name} is ${it.age} years old" }
     }
 
     /**
@@ -20,34 +20,38 @@ class ScopeFunctions : ShouldSpec({
         println(result)
     }
 
-    fun countInString(number: String): Int {
-        TODO()
+    fun countInString(number: String):Int {
+        number.run {
+            return count{it == 'a'}
+        }
     }
 
     /**
      * This example want you to use run function
      * in kotlin count requires an expression of compare that should return boolean true
      */
-    should("Count 'a' in string") {
+    should("Count 'a' in string"){
         val result = countInString("I hate my life so hard") shouldBe 2
         println(result)
     }
 
-    fun getPersonAge(person: Person): Int {
-        TODO()
+    fun getPersonAge(person:Person): Int{
+        person.apply { return age }
     }
 
     /**
      * here we will use apply to se how it works
      */
-    should("Get person age") {
+    should("Get person age"){
         val person = Person("Fan Fan Lilliputian", 99)
         val result = getPersonAge(person) shouldBe 99
         println(result)
     }
 
     fun getRandomDouble(max: Int): Int {
-        TODO()
+        Random.nextInt(max).also {
+            return it + max
+        }
     }
 
     /**
