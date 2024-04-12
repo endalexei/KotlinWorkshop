@@ -1,4 +1,4 @@
-package homework
+package homework.day1
 
 import io.kotest.core.spec.style.FunSpec
 
