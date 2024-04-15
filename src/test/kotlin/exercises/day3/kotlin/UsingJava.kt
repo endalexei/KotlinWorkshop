@@ -15,7 +15,14 @@ import io.kotest.matchers.shouldBe
  */
 class UsingJava : ShouldSpec({
     should("Use java in Kotlin ") {
-        //TODO
+        val endavians = listOf(
+            Endava("Valentina", 18), Endava("Valerian", 55),
+            Endava("Sergiu", 12)
+        )
+
+        endavians.toString() shouldBe "[Endava{name='Valentina', age=18}, Endava{name='Valerian', age=55}, " +
+                "Endava{name='Sergiu', age=12}]"
+        endavians.forEach { println("Name: ${it.name}, Age: ${it.age}") }
     }
 
     /**

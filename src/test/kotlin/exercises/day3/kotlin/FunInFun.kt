@@ -6,9 +6,15 @@ import io.kotest.matchers.shouldBe
 class FunInFun : ShouldSpec({
     fun isBigger(a: Int, b: Int): Boolean {
         fun validate(a: Int, b: Int): Boolean {
-            TODO()
+            return a > b
         }
-        TODO()
+        if (validate(a, b)) {
+            println("Ya is true ")
+            return true
+        } else {
+            println("Na man, not true ")
+            return true
+        }
     }
 
     /**

@@ -5,7 +5,17 @@ import io.kotest.matchers.shouldBe
 
 class ReturnsAndJumps : ShouldSpec( {
     fun List<Int>.findIndexOfFirstElementFromList(list: List<Int>): List<Int> {
-        TODO()
+        var response = mutableListOf<Int>()
+        list.forEach loop@{
+            response.add(this.indexOfFirst { number -> it == number  })
+            for (i in 0..this.size) {
+                if (this[i] == it) {
+                    response.add(i)
+                    return@loop
+                }
+            }
+        }
+        return response
     }
 
     /**

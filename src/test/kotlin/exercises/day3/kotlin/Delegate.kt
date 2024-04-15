@@ -10,21 +10,30 @@ import io.kotest.matchers.shouldBe
 class Delegate : ShouldSpec({
     should("Delegate is the key to success ") {
         val b = Delegationimplementation("Welcome, Noob!")
-//        val result1 = Newfeature(b).mymessage() shouldBe "MoverLover"
-//        val result2 = Newfeature(b).mymessageline() shouldBe "Welcome, Noob!"
-//        println(result1)
-//        println(result2)
+        val result1 = NewFeature(b).mymessage() shouldBe "MoverLover"
+        val result2 = NewFeature(b).mymessageline() shouldBe "Welcome, Noob!"
+        println(result1)
+        println(result2)
     }
 })
 
 interface delegation {
-    //TODO implement
+    fun mymessage(): String
+    fun mymessageline(): String
 }
 
 class Delegationimplementation(val y: String) : delegation {
-    //TODO implement
+    override fun mymessage(): String {
+        return y
+    }
+
+    override fun mymessageline(): String {
+        return y
+    }
 }
 
-class Newfeature(m: delegation) : delegation by m {
-    //TODO override
+class NewFeature(m: delegation) : delegation by m {
+    override fun mymessage(): String {
+        return "MoverLover"
+    }
 }

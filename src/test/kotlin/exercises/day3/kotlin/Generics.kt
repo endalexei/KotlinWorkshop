@@ -13,13 +13,34 @@ class Generics : ShouldSpec({
     {
         val integer = SumVals(1, 3).sum() shouldBe 4
         val string = SumVals("This", "That").sum() shouldBe "This and That"
-
+        println(integer)
+        println(string)
     }
 
 })
 
 class SumVals<T>(val a: T, val b: T) {
     fun sum(): Any {
-        TODO()
+        return when (a) {
+            is Int -> a + (b as Int)
+            is String -> "$a and $b"
+            else -> Unit
+        }
+    }
+
+    fun sum3(): Any {
+        return when {
+            a is Int && b is Int -> a + b
+            a is String && b is String -> "$a and $b"
+            else -> Unit
+        }
+    }
+
+    fun sum2(): Any {
+        return if (a is Int && b is Int) {
+            a + b
+        } else if (a is String && b is String) {
+            "$a and $b"
+        } else Unit
     }
 }

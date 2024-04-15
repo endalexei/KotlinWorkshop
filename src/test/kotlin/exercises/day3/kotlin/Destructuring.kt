@@ -9,7 +9,9 @@ class Destructuring : ShouldSpec({
     var age = 0
 
     fun destructuring(personValue: Person) {
-        TODO()
+        val (first, second) = personValue
+        name = first
+        age = second
     }
 
     /**
@@ -26,6 +28,12 @@ class Destructuring : ShouldSpec({
 })
 
 class Person(val personName: String, val age: Int) {
-    //TODO()
+    operator fun component1(): String {
+        return personName
+    }
+
+    operator fun component2(): Int {
+        return age
+    }
 
 }
